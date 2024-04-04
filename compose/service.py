@@ -1573,10 +1573,12 @@ def get_container_data_volumes(container, volumes_option, tmpfs_option, mounts_o
         for mount in container.get('Mounts') or {}
     }
 
+    key = 'ContainerConfig' if 'ContainerConfig' in container.image_config else 'Config'
+
     image_volumes = [
         VolumeSpec.parse(volume)
         for volume in
-        container.image_config['ContainerConfig'].get('Volumes') or {}
+        container.image_config[key].get('Volumes') or {}
     ]
 
     for volume in set(volumes_option + image_volumes):
