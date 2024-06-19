@@ -107,8 +107,7 @@ def tls_config_from_options(options, environment=None):
             client_cert = (cert, key)
 
         return TLSConfig(
-            client_cert=client_cert, verify=verify, ca_cert=ca_cert,
-            assert_hostname=False if skip_hostname_check else None
+            client_cert=client_cert, verify=verify, ca_cert=ca_cert
         )
 
     return None
