@@ -108,8 +108,7 @@ def tls_config_from_options(options, environment=None):
 
         return TLSConfig(
             client_cert=client_cert, verify=verify, ca_cert=ca_cert,
-            assert_hostname=False if skip_hostname_check else None,
-            ssl_version=tls_version
+            assert_hostname=False if skip_hostname_check else None
         )
 
     return None
@@ -121,7 +120,7 @@ def docker_client(environment, version=None, context=None, tls_version=None):
     according to the same logic as the official Docker client.
     """
     try:
-        kwargs = kwargs_from_env(environment=environment, ssl_version=tls_version)
+        kwargs = kwargs_from_env(environment=environment)
     except TLSParameterError:
         raise UserError(
             "TLS configuration is invalid - make sure your DOCKER_TLS_VERIFY "
